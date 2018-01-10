@@ -1,0 +1,212 @@
+---
+title: "Práctica 1 (FESTAD)"
+author: "Ana Isabel Valero Moreno"
+date: "22/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(datasets)
+library(rio)
+library(readr)
+library(openxlsx)
+library(utils)
+library(jsonlite) 
+library(foreign)
+
+
+```
+
+- Para cada una de las actividades propuestas, indique en el apartado respuesta de cada actividad tanto la solución como el proceso seguido para obtenerla.
+
+- Enviarme por email a **calvo@us.es** la carpeta del proyecto con la solución en un **fichero comprimido con el siguiente nombre**: "FESTAD_P01_APELLIDOS_NOMBRE.zip", y el **asunto del email** empiece por: FESTAD_P01: APELLIDOS, NOMBRE.
+
+## Actividad 1
+
+Elegir 3 conjuntos de datos (data.frame) utilizando la función R: `data()` (del paquete "datasets"). Para cada uno de ellos indicar cuántas variables y sobre cuántos individuos se han recogido. 
+
+### Respuesta
+
+1. **Iris**: data frame con 5 variables y 150 observaciones:
+```{r eval=FALSE} 
+
+data("iris")
+nrow(iris)
+ncol(iris)
+```
+2. **ChickWeight**: data frame con 4 variables y 578 observaciones:
+
+```{r eval=FALSE} 
+
+data("ChickWeight")
+nrow(ChickWeight)
+ncol(ChickWeight)
+```
+3. **EuStockMarkets**: data frame con 4 variables y 1860 observaciones:
+
+```{r eval=FALSE} 
+
+data("EuStockMarkets")
+head(EuStockMarkets)
+nrow(EuStockMarkets)
+ncol(EuStockMarkets)
+```
+
+## Actividad 2
+
+Descargue el fichero excel [datosejsalud.xlsx](http://destio.us.es/calvo/cursoR/datosejsalud.xlsx) en su carpeta de proyecto, e importelo con ayuda de diferentes paquetes R, y también directamente desde la aplicación RStudio (en distintos chunks de este fichero Rmd). Utilice alguna de las funciones R que ya conoce sobre los objetos R creados.
+
+
+
+### Respuesta
+
+```{r eval=FALSE} 
+library(rio)
+datosejsalud <- import("http://destio.us.es/calvo/cursoR/datosejsalud.xlsx",fileEncoding = "UTF-8")
+
+datosejsalud <- export(datosejsalud, file = "datosejsalud.xlsx")
+```
+
+1. Paquete **rio**
+
+```{r eval=FALSE} 
+
+library(rio)
+datosejsalud1 <- import("datosejsalud.xlsx")
+```
+
+2. Paquete **readxl**
+
+```{r eval=FALSE} 
+
+library(readxl)
+datosejsalud2 <- read_excel("datosejsalud.xlsx")
+```
+
+3. Paquete **openxlsx**
+
+```{r eval=FALSE} 
+
+library(openxlsx)
+datosejsalud3 <- read.xlsx("datosejsalud.xlsx")
+```
+
+4. Paquete **xlsx**
+
+```{r eval=FALSE} 
+
+library(xlsx)
+datosejsalud4 <- read.xlsx("datosejsalud.xlsx")
+```
+
+5. Directamente desde **RStudio**
+
+```{r eval=FALSE} 
+
+datosejsalud5 <- read_excel("C:/Users/Anabel/Desktop/Máster/R/Práctica 1/practica01/datosejsalud.xlsx")
+```
+
+
+
+
+
+
+## Actividad 3
+
+
+Descárguese un fichero csv (cualquier año) con un tamaño superior a los 40 MB, e importe los datos a R utilizando al menos 4 métodos, y mida el tiempo que dura en cada caso. Utilice la función `summary()` sobre el objeto R creado.
+
+
+### Respuesta
+
+1. Paquete **rio**
+
+```{r} 
+
+library(rio)
+data1 <- import("pp-2017-part1.csv")
+summary(data1)
+system.time(import("pp-2017-part1.csv"))
+```
+
+
+
+2. Paquete **readr**
+
+```{r, message=FALSE, warning=FALSE}
+library(readr)
+data2 <- read_csv("pp-2017-part1.csv")
+summary(data2)
+system.time(read_csv("pp-2017-part1.csv"))
+```
+
+
+3. Paquete **utils**
+
+   + Función **read.csv**:
+
+```{r} 
+
+library(utils)
+data3 <- read.csv("pp-2017-part1.csv")
+summary(data3)
+system.time(read.csv("pp-2017-part1.csv"))
+```
+
+
+   + Función **read.csv2**:
+
+```{r} 
+
+library(utils)
+data4 <- read.csv2("pp-2017-part1.csv",sep = ",")
+summary(data4)
+system.time(read.csv2("pp-2017-part1.csv",sep = ","))
+
+```
+
+
+4. Directamente desde **RStudio**
+
+```{r, message=FALSE, warning=FALSE}
+
+data <- read_csv("C:/Users/Anabel/Desktop/Máster/R/Práctica 1/practica01/pp-2017-part1.csv")
+summary(data)
+system.time(read_csv("C:/Users/Anabel/Desktop/Máster/R/Práctica 1/practica01/pp-2017-part1.csv"))
+```
+
+
+## Actividad 4
+
+Importe en R todos los ficheros contenidos en la subcarpeta "datos" (utilice caminos relativos), y realice algún tipo de comentario sobre cada uno.
+
+### Respuesta
+
+1. **iris1** contiene 150 observaciones de 5 variables
+
++ Importado con **import** de **rio**:
+```{r, message=FALSE, warning=FALSE}
+
+iris1 <- import("datos/iris1.json")
+```
+
++ Importado con **fromJSON** de **jsonlite**:
+```{r, message=FALSE, warning=FALSE}
+
+iris1_ <- fromJSON('datos/iris1.json')
+```
+
+2. **sids** contiene 100 observaciones de 14 variables
+
++ Importado con **import** de **rio**:
+```{r, message=FALSE, warning=FALSE}
+
+sids <- import("datos/sids.dbf")
+```
+
++ Importado con **read.dbf** de **foreign**:
+```{r, message=FALSE, warning=FALSE}
+
+sids_ <- read.dbf("datos/sids.dbf")
+```
