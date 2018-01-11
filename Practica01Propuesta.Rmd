@@ -1,5 +1,5 @@
 ---
-title: "Pr·ctica 1 (FESTAD)"
+title: "Pr√°ctica 1 (FESTAD)"
 author: "Ana Isabel Valero Moreno"
 date: "22/10/2017"
 output: html_document
@@ -18,13 +18,9 @@ library(foreign)
 
 ```
 
-- Para cada una de las actividades propuestas, indique en el apartado respuesta de cada actividad tanto la soluciÛn como el proceso seguido para obtenerla.
-
-- Enviarme por email a **calvo@us.es** la carpeta del proyecto con la soluciÛn en un **fichero comprimido con el siguiente nombre**: "FESTAD_P01_APELLIDOS_NOMBRE.zip", y el **asunto del email** empiece por: FESTAD_P01: APELLIDOS, NOMBRE.
-
 ## Actividad 1
 
-Elegir 3 conjuntos de datos (data.frame) utilizando la funciÛn R: `data()` (del paquete "datasets"). Para cada uno de ellos indicar cu·ntas variables y sobre cu·ntos individuos se han recogido. 
+Elegir 3 conjuntos de datos (data.frame) utilizando la funci√≥n R: `data()` (del paquete "datasets"). Para cada uno de ellos indicar cu√°ntas variables y sobre cu√°ntos individuos se han recogido. 
 
 ### Respuesta
 
@@ -55,7 +51,7 @@ ncol(EuStockMarkets)
 
 ## Actividad 2
 
-Descargue el fichero excel [datosejsalud.xlsx](http://destio.us.es/calvo/cursoR/datosejsalud.xlsx) en su carpeta de proyecto, e importelo con ayuda de diferentes paquetes R, y tambiÈn directamente desde la aplicaciÛn RStudio (en distintos chunks de este fichero Rmd). Utilice alguna de las funciones R que ya conoce sobre los objetos R creados.
+Descargue el fichero excel [datosejsalud.xlsx](http://destio.us.es/calvo/cursoR/datosejsalud.xlsx) en su carpeta de proyecto, e importelo con ayuda de diferentes paquetes R, y tambi√©n directamente desde la aplicaci√≥n RStudio (en distintos chunks de este fichero Rmd). Utilice alguna de las funciones R que ya conoce sobre los objetos R creados.
 
 
 
@@ -104,7 +100,7 @@ datosejsalud4 <- read.xlsx("datosejsalud.xlsx")
 
 ```{r eval=FALSE} 
 
-datosejsalud5 <- read_excel("C:/Users/Anabel/Desktop/M·ster/R/Pr·ctica 1/practica01/datosejsalud.xlsx")
+datosejsalud5 <- read_excel("C:/Users/Anabel/Desktop/M√°ster/R/Pr√°ctica 1/practica01/datosejsalud.xlsx")
 ```
 
 
@@ -115,7 +111,7 @@ datosejsalud5 <- read_excel("C:/Users/Anabel/Desktop/M·ster/R/Pr·ctica 1/practic
 ## Actividad 3
 
 
-Desc·rguese un fichero csv (cualquier aÒo) con un tamaÒo superior a los 40 MB, e importe los datos a R utilizando al menos 4 mÈtodos, y mida el tiempo que dura en cada caso. Utilice la funciÛn `summary()` sobre el objeto R creado.
+Desc√°rguese un fichero csv (cualquier a√±o) con un tama√±o superior a los 40 MB, e importe los datos a R utilizando al menos 4 m√©todos, y mida el tiempo que dura en cada caso. Utilice la funci√≥n `summary()` sobre el objeto R creado.
 
 
 ### Respuesta
@@ -144,7 +140,7 @@ system.time(read_csv("pp-2017-part1.csv"))
 
 3. Paquete **utils**
 
-   + FunciÛn **read.csv**:
+   + Funci√≥n **read.csv**:
 
 ```{r} 
 
@@ -155,7 +151,7 @@ system.time(read.csv("pp-2017-part1.csv"))
 ```
 
 
-   + FunciÛn **read.csv2**:
+   + Funci√≥n **read.csv2**:
 
 ```{r} 
 
@@ -171,15 +167,15 @@ system.time(read.csv2("pp-2017-part1.csv",sep = ","))
 
 ```{r, message=FALSE, warning=FALSE}
 
-data <- read_csv("C:/Users/Anabel/Desktop/M·ster/R/Pr·ctica 1/practica01/pp-2017-part1.csv")
+data <- read_csv("C:/Users/Anabel/Desktop/M√°ster/R/Pr√°ctica 1/practica01/pp-2017-part1.csv")
 summary(data)
-system.time(read_csv("C:/Users/Anabel/Desktop/M·ster/R/Pr·ctica 1/practica01/pp-2017-part1.csv"))
+system.time(read_csv("C:/Users/Anabel/Desktop/M√°ster/R/Pr√°ctica 1/practica01/pp-2017-part1.csv"))
 ```
 
 
 ## Actividad 4
 
-Importe en R todos los ficheros contenidos en la subcarpeta "datos" (utilice caminos relativos), y realice alg˙n tipo de comentario sobre cada uno.
+Importe en R todos los ficheros contenidos en la subcarpeta "datos" (utilice caminos relativos), y realice alg√∫n tipo de comentario sobre cada uno.
 
 ### Respuesta
 
